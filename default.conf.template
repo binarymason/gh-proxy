@@ -1,0 +1,22 @@
+server {
+    listen $PORT default_server;
+    default_type text/html;
+
+    # no cookie, no soup for you.
+    if ($cookie_mauth != "yourmom") {
+      return 200 "<!DOCTYPE html><pre>baby shark</pre>\n";
+    }
+
+    location  / {
+      resolver 8.8.8.8;
+
+      if ($request_method = 'POST') {
+        return 200 "<!DOCTYPE html><pre>sorry, cannot post cross-domain</pre>\n";
+      }
+
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header Host github.com;
+
+      proxy_pass         https://github.com;
+    }
+}
