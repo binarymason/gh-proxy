@@ -3,9 +3,9 @@ server {
     default_type text/html;
 
     # no cookie, no soup for you.
-    if ($cookie_mauth != "yourmom") {
-      return 200 "<!DOCTYPE html><pre>baby shark</pre>\n";
-    }
+    #if ($cookie_mauth != "yourmom") {
+    #  return 200 "<!DOCTYPE html><pre>baby shark</pre>\n";
+    #}
 
     location  / {
       resolver 8.8.8.8;
